@@ -1,0 +1,164 @@
+.main {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: calc(100vh - 70px);
+}
+
+.header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Zone List */
+.zoneList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.zoneItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--glass-border);
+}
+
+.zoneInfo h4 {
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+}
+
+.zoneInfo p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.zoneBadge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.badgeLow { background: rgba(16, 185, 129, 0.1); color: var(--status-low); border: 1px solid rgba(16, 185, 129, 0.2); }
+.badgeModerate { background: rgba(245, 158, 11, 0.1); color: var(--status-moderate); border: 1px solid rgba(245, 158, 11, 0.2); }
+.badgeCrowded { background: rgba(239, 68, 68, 0.1); color: var(--status-crowded); border: 1px solid rgba(239, 68, 68, 0.2); }
+
+/* Incentive Banner */
+.incentiveBanner {
+  background: linear-gradient(90deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
+  border: 1px solid var(--accent-primary);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.15);
+  animation: pulseIncentive 2s infinite;
+}
+
+@keyframes pulseIncentive {
+  0% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(99, 102, 241, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+}
+
+.incentiveContent h4 {
+  color: var(--accent-primary);
+  margin-bottom: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.incentiveContent p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+/* Interactive Toast Overlay */
+.toastOverlay {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(150px);
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--status-low);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem 2rem;
+  box-shadow: 0 10px 40px rgba(16, 185, 129, 0.2);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.toastOverlay.visible {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+.toastTicket {
+  display: flex;
+  flex-direction: column;
+}
+
+.toastTicket strong {
+  color: var(--text-primary);
+  font-size: 1.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.toastTicket span {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}

@@ -1,0 +1,81 @@
+{
+  "zones": [
+    {
+      "id": "z1",
+      "name": "North Gate Entry",
+      "capacity": 500,
+      "currentOccupancy": 450,
+      "status": "Crowded"
+    },
+    {
+      "id": "z2",
+      "name": "Food Court A",
+      "capacity": 300,
+      "currentOccupancy": 200,
+      "status": "Moderate"
+    },
+    {
+      "id": "z3",
+      "name": "Merch Stand West",
+      "capacity": 100,
+      "currentOccupancy": 15,
+      "status": "Low"
+    },
+    {
+      "id": "z4",
+      "name": "Restroom Section 102",
+      "capacity": 50,
+      "currentOccupancy": 48,
+      "status": "Crowded"
+    },
+    {
+      "id": "z5",
+      "name": "South Gate Entry",
+      "capacity": 500,
+      "currentOccupancy": 120,
+      "status": "Low"
+    }
+  ],
+  "queues": [
+    {
+      "id": "q1",
+      "zoneId": "z2",
+      "type": "Food",
+      "estimatedWaitTime": 21,
+      "activeTickets": 13
+    },
+    {
+      "id": "q2",
+      "zoneId": "z3",
+      "type": "Merch",
+      "estimatedWaitTime": 6,
+      "activeTickets": 3
+    },
+    {
+      "id": "q3",
+      "zoneId": "z4",
+      "type": "Restroom",
+      "estimatedWaitTime": 7,
+      "activeTickets": 6
+    }
+  ],
+  "incidents": [
+    {
+      "id": "i1",
+      "location": "z1",
+      "type": "Security",
+      "assignedStaff": "Bob",
+      "status": "Active",
+      "urgency": "High",
+      "timestamp": "2024-05-15T10:00:00Z"
+    }
+  ],
+  "incentives": [
+    {
+      "id": "inc1",
+      "targetZoneId": "z5",
+      "description": "10% off at Food Court B (South Gate)",
+      "active": true
+    }
+  ]
+}

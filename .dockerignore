@@ -1,0 +1,22 @@
+Dockerfile
+.dockerignore
+node_modules
+.next
+.git
+.swc
+
+# env files with secrets
+.env
+.env.local
+.env.*.local
+
+# dev / testing
+npm-debug.log
+jest.config.mjs
+jest.setup.js
+__tests__
+
+# docs
+README.md
+AGENTS.md
+CLAUDE.md

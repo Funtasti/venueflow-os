@@ -1,0 +1,42 @@
+# ── Stage 1: Install dependencies ─────────────────────────────────────
+FROM node:20-alpine AS deps
+RUN apk add --no-cache libc6-compat
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm ci
+
+# ── Stage 2: Build the application ───────────────────────────────────
+FROM node:20-alpine AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+
+ENV NEXT_TELEMETRY_DISABLED=1
+# Prisma client must be generated before Next.js build
+RUN npx prisma generate
+RUN npm run build
+
+# ── Stage 3: Production runner ───────────────────────────────────────
+FROM node:20-alpine AS runner
+WORKDIR /app
+
+ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
+ENV PORT=8080
+ENV HOSTNAME="0.0.0.0"
+
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
+
+# Copy only what the standalone build needs
+COPY --from=builder /app/public ./public
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+# Copy local JSON DB fallback (ephemeral on Cloud Run — use a real DB for persistence)
+COPY --from=builder --chown=nextjs:nodejs /app/data ./data
+
+USER nextjs
+
+EXPOSE 8080
+
+CMD ["node", "server.js"]
