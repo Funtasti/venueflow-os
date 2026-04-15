@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getIncidents, readDbFallback, writeDbFallback, hasPostgres, prisma, Incident } from '@/lib/db';
+import { getIncidents, prisma } from '@/lib/db';
 
 export const dynamic = 'force-dynamic';
 
@@ -21,27 +21,16 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Missing incident fields' }, { status: 400 });
     }
 
-    if (hasPostgres) {
-      const newIncident = await prisma.incident.create({
-        data: { location, type, urgency, assignedStaff: 'Unassigned', status: 'Active' }
-      });
-      return NextResponse.json({ success: true, incident: newIncident });
-    } else {
-      const db = await readDbFallback();
-      const newIncident: Incident = {
-        id: `i${Date.now()}`,
-        location,
-        type,
-        assignedStaff: 'Unassigned',
-        status: 'Active',
-        urgency,
-        timestamp: new Date().toISOString()
-      };
-      
-      db.incidents.push(newIncident);
-      await writeDbFallback(db);
-      return NextResponse.json({ success: true, incident: newIncident });
-    }
+    const newIncident = await prisma.incident.create({
+      data: { 
+        location, 
+        type, 
+        urgency, 
+        assignedStaff: 'Unassigned', 
+        status: 'Active' 
+      }
+    });
+    return NextResponse.json({ success: true, incident: newIncident });
   } catch (error) {
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
