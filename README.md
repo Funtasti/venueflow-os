@@ -67,10 +67,6 @@ npx prisma migrate deploy
 npx prisma db seed
 ```
 
-Without `DATABASE_URL`, the app uses the local `data/db.json` file automatically.
-
----
-
 ## ☁️ Deploying to Google Cloud Run
 
 ### Prerequisites
@@ -142,8 +138,6 @@ gcloud run deploy venueflow-os \
   --platform managed \
   --allow-unauthenticated
 ```
-
-> **Note:** Without `DATABASE_URL`, the app uses `data/db.json` backed into the container image. Cloud Run containers have an ephemeral filesystem, so changes to `db.json` will be lost on each cold start. Use Cloud SQL for persistent data in production.
 
 ## 🛡️ Security, Testing & Accessibility
 

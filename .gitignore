@@ -48,3 +48,7 @@ next-env.d.ts
 
 # swc cache
 .swc
+
+#misc
+AGENTS.md
+CLAUDE.md
