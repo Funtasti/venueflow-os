@@ -13,7 +13,7 @@ Most apps just tell you a line is long. VenueFlow OS proactively *fixes* the lin
 | Framework | Next.js 16 (App Router, Turbopack) |
 | Language | TypeScript |
 | Styling | Vanilla CSS + CSS Modules |
-| ORM | Prisma (PostgreSQL) with JSON file fallback |
+| ORM | Prisma (PostgreSQL) |
 | Real-time | SWR / Polling Hooks |
 | Testing | Jest + React Testing Library |
 | Deployment | Docker → Google Cloud Run |
