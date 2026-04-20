@@ -27,10 +27,9 @@ venueflow-os/
 │   ├── staff/         # Staff-facing Incident Command Center
 │   └── globals.css    # Design tokens, glassmorphism variables
 ├── components/        # Reusable UI components (Button, Card, Navbar)
-├── data/              # Local JSON DB fallback (db.json)
 ├── hooks/             # Custom hooks (useVenueData)
-├── lib/               # Database abstraction layer (Prisma + JSON fallback)
-├── prisma/            # Prisma schema & seed script
+├── lib/               # Database abstraction layer (Prisma)
+├── prisma/            # Prisma schema
 └── __tests__/         # Unit & component tests
 ```
 
@@ -64,7 +63,6 @@ Set `DATABASE_URL` in your `.env` to a Postgres connection string. Then:
 
 ```bash
 npx prisma migrate deploy
-npx prisma db seed
 ```
 
 ## ☁️ Deploying to Google Cloud Run
